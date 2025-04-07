@@ -1,0 +1,67 @@
+<% layout("./boilerplate/boilerplate.ejs") %>
+
+    <div class="d-flex justify-content-center align-items-center">
+        <div class="card shadow-lg p-4 text-center" style="width: 350px;">
+            <h3 class="mb-1 text-primary">OTP Verification</h3>
+            <p class="mb-3">otp send to your registered email address</p>
+
+            <!-- OTP Input Fields -->
+            <div class="d-flex justify-content-center gap-2 mb-3">
+                <input type="text" class="form-control otp-input text-center" maxlength="1" autofocus>
+                <input type="text" class="form-control otp-input text-center" maxlength="1">
+                <input type="text" class="form-control otp-input text-center" maxlength="1">
+                <input type="text" class="form-control otp-input text-center" maxlength="1">
+                <input type="text" class="form-control otp-input text-center" maxlength="1">
+                <input type="text" class="form-control otp-input text-center" maxlength="1">
+            </div>
+
+            <!-- Resend OTP -->
+            <a href="/forgot">
+                <button class="btn btn-link text-decoration-none">Resend OTP</button>
+            </a>
+
+            <!-- Verify OTP Button -->
+            <button class="btn btn-primary w-100 mt-2" id="verifyOtpBtn" type="submit">Verify OTP</button>
+            <p class="mt-2" id="otpMessage"></p>
+        </div>
+
+        <script>
+            document.getElementById("verifyOtpBtn").addEventListener("click", function () {
+                let otpInputs = document.querySelectorAll(".otp-input");
+                let otpArray = Array.from(otpInputs).map(input => input.value);
+                fetch("/forgot-otp", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ otp: otpArray }) // Send OTP as an array
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById("otpMessage").textContent = data.message;
+                        document.getElementById("otpMessage").style.color = data.success ? "green" : "red";
+
+                        if (data.success) {
+                            setTimeout(() => window.location.href = "/change-password", 1000);
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
+            });
+            document.addEventListener("DOMContentLoaded", function () {
+                const inputs = document.querySelectorAll(".otp-input");
+
+                inputs.forEach((input, index) => {
+                    input.addEventListener("input", (e) => {
+                        if (e.target.value.length === 1 && index < inputs.length - 1) {
+                            inputs[index + 1].focus(); // Move to next input
+                        }
+                    });
+
+                    input.addEventListener("keydown", (e) => {
+                        if (e.key === "Backspace" && e.target.value === "" && index > 0) {
+                            inputs[index - 1].focus(); // Move back on backspace
+                        }
+                    });
+                });
+            });
+        </script>
+
+    </div>

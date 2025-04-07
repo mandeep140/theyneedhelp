@@ -1,0 +1,23 @@
+<% layout("./boilerplate/boilerplate.ejs") %>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-md-5 p-3">
+    <h1 class="w-100">Total cases: <%= all.length %></h1>
+    <% for(let post of all) { %>
+      <a href="/case/<%= post._id %>" style="text-decoration: none;">
+        <div class="card mb-3 col post-card">
+          <img src="<%= post.image %>" class="card-img-top" alt="case_img">
+          <div class="card-img-overlay"></div>
+          <div class="card-body">
+            <h5 class="card-title">
+              <%= post.title %>
+            </h5>
+            <p>Solved status: 
+              <% if(post.isSolved == true){ %>
+                solved by @<% } %><%= post.solvedBy %>
+          </p>
+            <p class="card-text"><small class="text-body-secondary">Uploaded at: <%= post.date.toLocaleString() %></small></p>
+          </div>
+        </div>
+      </a>
+      <% } %>
+  </div>

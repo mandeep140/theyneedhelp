@@ -1,0 +1,52 @@
+<nav class="navbar bg-body-tertiary sticky-top navbar-expand-lg " style="--bs-bg-opacity: .8;">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/resources/nav_logo.png" alt="logo" width="80">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" aria-current="page" href="/">Home</a>
+        <a class="nav-link" aria-current="page" href="/case">All case</a>
+        <a class="nav-link" aria-current="page" href="/new-case">Add new case</a>
+        <% if(currUser && currUser.ngo == true){ %>
+        <a class="nav-link" aria-current="page" href="/my-state">My State</a>
+        <% } %>
+        <a class="nav-link" aria-current="page" href="/about">About</a>
+      </div>
+      
+      <div class="autocomplete-container ms-auto me-auto d-lg-flex d-none">
+        <form class="d-flex" action="/search" method="post">
+          <input class="form-control me-2 nav-search" name="search" id="searchInput" type="text" autocomplete="off"
+            placeholder="Search case by state name" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+        <div class="suggestions" id="suggestions"></div>
+      </div>
+
+      <div class="navbar-nav ms-auto">
+        <% if(currUser) { %>
+          <% if(currUser.admin == true){ %>
+            <a class="nav-link" aria-current="page" href="/admin">Admin page</a>
+            <% } %>
+          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#showUser">@<%= currUser.username %></a>
+          <a class="nav-link" aria-current="page" href="/logout">log-out</a>
+          <% }else{ %>
+            <a class="nav-link" aria-current="page" href="/login">login</a>
+            <a class="nav-link" aria-current="page" href="/signup">Sign-up</a>
+            <% } %>
+      </div>
+    </div>
+    <div class="autocomplete-container ms-auto me-auto d-lg-none d-flex w-100 justify-content-center">
+      <form class="d-flex" action="/search" method="post">
+        <input class="form-control me-2 nav-search" name="search" id="searchInput" type="text" autocomplete="off"
+          placeholder="Search case by state name" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+      <div class="suggestions" id="suggestions"></div>
+    </div>
+  </div>
+</nav>

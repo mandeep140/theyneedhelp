@@ -1,0 +1,35 @@
+<% layout("./boilerplate/boilerplate.ejs") %>
+
+    <% if(posts.length === 0) { %>
+        <div class="container text-center mt-5">
+            <h3>No case available in <%= search %>
+            </h3>
+        </div>
+        <% } %>
+        <% if(posts.length > 0) { %>
+            <div class="container text-center mt-5">
+                <h3>cases in <%= search %>
+                </h3>
+            </div>
+            <% } %>
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 p-md-5 p-3">
+                <% for(let post of posts) { %>
+                    <a href="/case/<%= post._id %>" style="text-decoration: none;">
+                        <div class="card mb-3 col post-card">
+                            <img src="<%= post.image %>" class="card-img-top" alt="case_img">
+                            <div class="card-img-overlay"></div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= post.title %>
+                                </h5>
+                                <p>Solved status:
+                                    <% if(post.isSolved==true){ %>
+                                        solved by @<% } %><%= post.solvedBy %>
+                                </p>
+                                <p class="card-text"><small class="text-body-secondary">Uploaded at: <%=
+                                            post.date.toLocaleString() %></small></p>
+                            </div>
+                        </div>
+                    </a>
+                    <% } %>
+            </div>

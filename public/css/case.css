@@ -1,0 +1,21 @@
+.post-card{
+    border: none !important;
+    margin-bottom: 2rem;
+}
+
+.card-img-top{
+    border-radius: 1rem !important;
+    width: 100% !important;
+    object-fit: cover !important;
+    height: 20rem !important;
+
+}
+
+.card-img-overlay{
+    opacity: 0;
+    background-color: white;
+}
+
+.card-img-overlay:hover{
+    opacity: 0.2;
+}

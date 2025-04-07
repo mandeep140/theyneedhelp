@@ -1,0 +1,21 @@
+<% layout("./boilerplate/boilerplate.ejs") %>
+
+<div class="" style="margin-top: 7rem;">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <h2>Update Case</h2>
+            <form action="/case/<%= post._id %>?_method=PUT" method="post" class="needs-validation" >
+                <div class="mb-3">
+                    <label for="description" class="form-lable">Add new update</label>
+                    <textarea type="text" name="post[update]" placeholder="new update"
+                        class="form-control" required></textarea>
+                </div>
+                <br>
+                <button class="btn btn-dark mb-3" type="submit">Update Case Now</button>
+            </form>
+            <form action="/case/<%= post._id %>">
+                <button type="submit" class="btn btn-dark mb-5">Discard</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+<% layout("./boilerplate/boilerplate.ejs") %>
+
+<div class="container">
+    <h2>All available users:</h2>
+    <div class="users ps-lg-5 ps-3">
+        <% for(let user of users) { %>
+            <hr>
+            <p><b>Username:</b> @<%= user.username %></p>
+            <p><b>Name:</b> <%= user.name %></p>
+            <p><b>E-mail:</b> <%= user.email %></p>
+            <p><b>State:</b> <%= user.address %></p>
+            <p><b>NGO:</b> <%= user.ngo ? "Yes" : "No" %></p> <!-- True => NGO, False => Normal User -->
+
+            <!-- Button to trigger modal -->
+            <button class="btn btn-dark mt-2 mb-2" data-bs-toggle="modal" data-bs-target="#changeType-<%= user._id %>">
+                Change account type
+            </button>
+
+            <!-- confirmation model for this user before changing account type -->
+            <div class="modal fade" id="changeType-<%= user._id %>" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Account type change confirmation</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            You are going to change the account type of <b>@<%= user.username %></b>.
+                        </div>
+            
+                        <form action="/admin" method="post">
+                            <% if(user.ngo == false) { %>
+                            <div class="modal-body">
+                                <label class="label" for="state-<%= user._id %>">Select State:</label>
+                                <select class="select form-control" name="state" required id="state-<%= user._id %>">
+                                    <option value="">--Select State--</option>
+                                    <option value="andamanandnicobarislands">Andaman and Nicobar Islands</option>
+                                    <option value="andhrapradesh">Andhra Pradesh</option>
+                                    <option value="arunachalpradesh">Arunachal Pradesh</option>
+                                    <option value="assam">Assam</option>
+                                    <option value="bihar">Bihar</option>
+                                    <option value="chandigarh">Chandigarh</option>
+                                    <option value="chhattisgarh">Chhattisgarh</option>
+                                    <option value="dadraandnagarhavelianddamananddiu">Dadra and Nagar Haveli and Daman and Diu</option>
+                                    <option value="delhi">Delhi</option>
+                                    <option value="goa">Goa</option>
+                                    <option value="gujarat">Gujarat</option>
+                                    <option value="haryana">Haryana</option>
+                                    <option value="himachalpradesh">Himachal Pradesh</option>
+                                    <option value="jammuandkashmir">Jammu and Kashmir</option>
+                                    <option value="jharkhand">Jharkhand</option>
+                                    <option value="karnataka">Karnataka</option>
+                                    <option value="kerala">Kerala</option>
+                                    <option value="ladakh">Ladakh</option>
+                                    <option value="lakshadweep">Lakshadweep</option>
+                                    <option value="madhyapradesh">Madhya Pradesh</option>
+                                    <option value="maharashtra">Maharashtra</option>
+                                    <option value="manipur">Manipur</option>
+                                    <option value="meghalaya">Meghalaya</option>
+                                    <option value="mizoram">Mizoram</option>
+                                    <option value="nagaland">Nagaland</option>
+                                    <option value="odisha">Odisha</option>
+                                    <option value="puducherry">Puducherry</option>
+                                    <option value="punjab">Punjab</option>
+                                    <option value="rajasthan">Rajasthan</option>
+                                    <option value="sikkim">Sikkim</option>
+                                    <option value="tamilnadu">Tamil Nadu</option>
+                                    <option value="telangana">Telangana</option>
+                                    <option value="tripura">Tripura</option>
+                                    <option value="uttarpradesh">Uttar Pradesh</option>
+                                    <option value="uttarakhand">Uttarakhand</option>
+                                    <option value="westbengal">West Bengal</option>
+                                </select>
+                            </div>
+                            <% } %>
+            
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+                                <input type="hidden" name="userId" value="<%= user._id %>"> <!-- Hidden user ID -->
+                                <button type="submit" class="btn btn-primary">Yes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>            
+        <% } %>
+    </div>
+</div>

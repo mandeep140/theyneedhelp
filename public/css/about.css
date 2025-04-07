@@ -1,0 +1,12 @@
+.about-main{
+    text-align: center;
+}
+
+.about-main a{
+    text-decoration: none;
+    color: black;
+}
+
+.about-main a:hover{
+    text-decoration: underline;
+}

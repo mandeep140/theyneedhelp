@@ -1,0 +1,39 @@
+.more-info-card img{
+    border-radius: 0 !important;
+}
+
+.content-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-video{
+    position: absolute;
+    margin-left: 100%;
+}
+
+.change-btn{
+    position: absolute;
+    z-index: 10;
+    border-radius: 100%;
+    height: 5rem;
+    width: 5rem;
+}
+
+
+@media (min-width: 992px) { /* Large screens */
+    .content-wrapper {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .second-half {
+        margin-left: 20px; 
+        width: 50%;
+        height: 75vh;
+        overflow: scroll;
+        border: 1px solid black;
+    }
+    .toChange{
+        transition: transform 0.8s ease-in-out;   
+    }
+}

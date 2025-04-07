@@ -1,0 +1,31 @@
+<% layout("./boilerplate/boilerplate.ejs") %>
+
+<div class="row" style="margin-top: 7rem;">
+    <div class="col-8 offset-2">
+        <h2>Sign-Up</h2>
+        <h5>create an account on TheyNeedHelp</h5>
+        <form action="/signup" method="post" class="needs-validation">
+            <div class="mb-3">
+                <label for="name" class="form-lable">Fullname</label>
+                <input type="text" name="name" id="name" placeholder="Enter your full-name" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-lable">Username</label>
+                <input type="text" name="username" id="username" placeholder="Enter Username" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-lable">E-mail</label>
+                <input type="email"  name="email" id="email" placeholder="Enter E-mail" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-lable">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter password" class="form-control" required>
+                <!-- script and styple for eye button is on home.js and home.css -->
+                <button class="btn btn-outline-secondary eye" type="button" id="togglePassword">
+                    <i class="fa-solid fa-eye"></i>
+                </button>
+            </div>
+            <button class="btn btn-dark mt-3 mb-5">Sign-up Now</button>
+        </form>
+    </div>
+</div>
