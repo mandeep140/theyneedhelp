@@ -15,7 +15,7 @@ function changing() {
 
 setInterval(() => {
   counter = counter + 1;
-  if(counter > 3){
+  if(counter > 2){
     counter = 0
   }
   changing();
